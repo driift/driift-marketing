@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<title>Freebees in exchange for your soul! - Driift</title>
+<style>
+body {
+	background: #21BAFB;
+}
+img {
+	position: fixed;
+	transition: left 0.25s ease-out;
+	top: 50%;
+	left: 0;
+	margin: -240px 0 0 0;
+	box-shadow: 0 0 4em #4a90e2;
+}
+</style>
+</head>
+<body>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+(function () {
+
+	function createSlides (slideWidth, slideMargin) {
+		var win = $(window)
+			, body = $("body")
+			, slides = $()
+
+		var left = (win.width() / 2) - (slideWidth / 2)
+
+		for (var i = 0; i < 9; i++) {
+			var slide = $("<img/>").attr("src", i + ".png").css("left", left)
+			body.append(slide)
+			slides = slides.add(slide)
+			left = left + slideMargin + slideWidth
+		}
+
+		return slides
+	}
+
+	var slideWidth = 640
+	  , slideMargin = 320
+	  , slides = createSlides(slideWidth, slideMargin)
+	  , center = ($(window).width() / 2) - (slideWidth / 2)
+	  , slideNum = 0
+
+	$(document).keydown(function (e) {
+		var increment = slideMargin + slideWidth
+
+		if (e.which == 40 || e.which == 37) {
+			increment = 0 - increment
+		}
+
+		slides.each(function () {
+			var slide = $(this)
+			slide.css("left", parseInt(slide.css("left"), 10) - increment)
+		})
+	})
+
+})()
+</script>
+</body>
+</html>
